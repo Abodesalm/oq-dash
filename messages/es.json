@@ -1,0 +1,19 @@
+{
+  "not_found": {
+    "not_found": "404 page not found"
+  },
+  "navbar": {
+    "signout": "sign out"
+  },
+  "links": {
+    "games": "games",
+    "series": "series",
+    "users": "users",
+    "developer": "developer",
+    "publisher": "publisher",
+    "about": "about",
+    "golden": "golden",
+    "search": "Search for",
+    "other": "Other"
+  }
+}

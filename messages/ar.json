@@ -1,0 +1,19 @@
+{
+  "not_found": {
+    "not_found": "404 page not found"
+  },
+  "navbar": {
+    "signout": "sign out"
+  },
+  "links": {
+    "games": "ألعاب",
+    "series": "سلسلة ألعاب",
+    "users": "مستخدمين",
+    "developer": "مطوّر",
+    "publisher": "ناشر",
+    "about": "عنّا",
+    "golden": "القسم الذهبي",
+    "search": "أبحث عن",
+    "other": "آخر"
+  }
+}

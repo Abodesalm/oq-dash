@@ -1,0 +1,146 @@
+[
+  {
+    "name": "stardew valley",
+    "developer": "concerned ape",
+    "publisher": "concerned ape",
+    "release": 2016,
+    "series": null,
+    "price": 14.99,
+    "metacritic": 89,
+
+    "keywords": ["stardew valley"],
+
+    "platforms": ["pc", "ps4", "xbox 1", "mobile", "switch"],
+
+    "descriptions": {
+      "en": "farming simulation role-playing game where players inherit an old farm and must restore it to its former glory. Players can grow crops, raise animals, mine for resources, fish, craft items, and build relationships with the townsfolk. The game offers a relaxing and immersive experience with charming pixel-art style and a rich, open-ended gameplay loop.",
+      "ar": "",
+      "de": "",
+      "fr": "",
+      "es": ""
+    },
+    "DLCs": [],
+    "req": {
+      "min": {
+        "CPU": null,
+        "RAM": 4,
+        "GPU": null,
+        "VRAM": 512
+      },
+      "rec": {
+        "CPU": null,
+        "RAM": 8,
+        "GPU": null,
+        "VRAM": 1
+      }
+    }
+  },
+  {
+    "name": "terraria",
+    "developer": "re-logic",
+    "publisher": "re-logic",
+    "release": 2011,
+    "series": null,
+    "price": 9.99,
+    "metacritic": 83,
+
+    "keywords": ["terraria"],
+
+    "platforms": ["pc", "ps3", "ps4", "xbox 1", "xbox 360", "mobile", "switch"],
+
+    "descriptions": {
+      "en": "2D sandbox adventure game that combines exploration, crafting, building, and combat. Players dig, build, and fight their way through a procedurally generated world filled with biomes, enemies, and treasures. The game features a wide variety of weapons, armors, and tools, as well as boss battles and events. Terraria encourages creativity and exploration, offering endless possibilities for players to shape their world.",
+      "ar": "",
+      "de": "",
+      "fr": "",
+      "es": ""
+    },
+    "DLCs": [],
+    "req": {
+      "min": {
+        "CPU": null,
+        "RAM": 4,
+        "GPU": null,
+        "VRAM": 512
+      },
+      "rec": {
+        "CPU": null,
+        "RAM": 8,
+        "GPU": null,
+        "VRAM": 1
+      }
+    }
+  },
+  {
+    "name": "katana ZERO",
+    "developer": "askiisoft",
+    "publisher": "devolver digital",
+    "release": 2019,
+    "series": null,
+    "price": 14.99,
+    "metacritic": 83,
+
+    "keywords": ["katana zero"],
+
+    "platforms": ["pc", "xbox 1", "switch"],
+
+    "descriptions": {
+      "en": "stylish neo-noir action platformer where players take on the role of a samurai assassin. The game features fast-paced combat, time manipulation mechanics, and a branching narrative that changes based on player choices. With its pixel-art visuals, intense gameplay, and a gripping story, Katana ZERO offers a unique and immersive experience.",
+      "ar": "",
+      "de": "",
+      "fr": "",
+      "es": ""
+    },
+    "DLCs": [],
+    "req": {
+      "min": {
+        "CPU": null,
+        "RAM": 2,
+        "GPU": null,
+        "VRAM": 512
+      },
+      "rec": {
+        "CPU": null,
+        "RAM": 4,
+        "GPU": null,
+        "VRAM": 512
+      }
+    }
+  },
+  {
+    "name": "hotline miami",
+    "developer": "dennaton games",
+    "publisher": "devolver digital",
+    "release": 2012,
+    "series": "hotline miami",
+    "price": 9.99,
+    "metacritic": 85,
+
+    "keywords": ["hotline miami"],
+
+    "platforms": ["pc", "ps3", "ps4", "xbox 1", "switch"],
+
+    "descriptions": {
+      "en": "brutal top-down action game set in an alternate 1989 Miami. Players take role of a mysterious protagonist who recieves cryptic messages instructing him to carry out violent tasks. The game features fast-paced, high-risk combat, a neon-soaked aesthetic, and a synthwave soundtrack. With its challenging gameplay and surreal narrative, Hotline Miami is a cult classic.",
+      "ar": "",
+      "de": "",
+      "fr": "",
+      "es": ""
+    },
+    "DLCs": [],
+    "req": {
+      "min": {
+        "CPU": null,
+        "RAM": 2,
+        "GPU": null,
+        "VRAM": 512
+      },
+      "rec": {
+        "CPU": null,
+        "RAM": 4,
+        "GPU": null,
+        "VRAM": 512
+      }
+    }
+  }
+]

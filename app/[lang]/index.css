@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 242.17 47.43% 34.31%;
+    --card: 0 0% 100%;
+    --card-foreground: 242.17 47.43% 34.31%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 242.17 47.43% 34.31%;
+    --primary: 258.31 89.53% 66.27%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 252 100% 97.06%;
+    --secondary-foreground: 244.52 57.94% 50.59%;
+    --muted: 250 100% 97.65%;
+    --muted-foreground: 262.12 83.26% 57.84%;
+    --accent: 214.29 94.59% 92.75%;
+    --accent-foreground: 225.93 70.73% 40.2%;
+    --destructive: 0 84.24% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 226.45 100% 93.92%;
+    --input: 226.45 100% 93.92%;
+    --ring: 258.31 89.53% 66.27%;
+    --chart-1: 258.31 89.53% 66.27%;
+    --chart-2: 262.12 83.26% 57.84%;
+    --chart-3: 263.39 69.96% 50.39%;
+    --chart-4: 263.36 69.3% 42.16%;
+    --chart-5: 263.5 67.42% 34.9%;
+    --sidebar: 250 100% 97.65%;
+    --sidebar-foreground: 242.17 47.43% 34.31%;
+    --sidebar-primary: 258.31 89.53% 66.27%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 214.29 94.59% 92.75%;
+    --sidebar-accent-foreground: 225.93 70.73% 40.2%;
+    --sidebar-border: 226.45 100% 93.92%;
+    --sidebar-ring: 258.31 89.53% 66.27%;
+    --font-sans: Roboto, sans-serif;
+    --font-serif: Playfair Display, serif;
+    --font-mono: Fira Code, monospace;
+    --radius: 0.625rem;
+    --shadow-2xs: 2px 2px 4px 0px hsl(255 86% 66% / 0.1);
+    --shadow-xs: 2px 2px 4px 0px hsl(255 86% 66% / 0.1);
+    --shadow-sm: 2px 2px 4px 0px hsl(255 86% 66% / 0.2),
+      2px 1px 2px -1px hsl(255 86% 66% / 0.2);
+    --shadow: 2px 2px 4px 0px hsl(255 86% 66% / 0.2),
+      2px 1px 2px -1px hsl(255 86% 66% / 0.2);
+    --shadow-md: 2px 2px 4px 0px hsl(255 86% 66% / 0.2),
+      2px 2px 4px -1px hsl(255 86% 66% / 0.2);
+    --shadow-lg: 2px 2px 4px 0px hsl(255 86% 66% / 0.2),
+      2px 4px 6px -1px hsl(255 86% 66% / 0.2);
+    --shadow-xl: 2px 2px 4px 0px hsl(255 86% 66% / 0.2),
+      2px 8px 10px -1px hsl(255 86% 66% / 0.2);
+    --shadow-2xl: 2px 2px 4px 0px hsl(255 86% 66% / 0.5);
+  }
+
+  .dark {
+    --background: 222.22 47.37% 11.18%;
+    --foreground: 226.45 100% 93.92%;
+    --card: 243.75 47.06% 20%;
+    --card-foreground: 226.45 100% 93.92%;
+    --popover: 243.75 47.06% 20%;
+    --popover-foreground: 226.45 100% 93.92%;
+    --primary: 258.31 89.53% 66.27%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 243.75 47.06% 20%;
+    --secondary-foreground: 226.45 100% 93.92%;
+    --muted: 243.75 47.06% 20%;
+    --muted-foreground: 252.5 94.74% 85.1%;
+    --accent: 244.52 57.94% 50.59%;
+    --accent-foreground: 226.45 100% 93.92%;
+    --destructive: 0 84.24% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 261.18 72.65% 22.94%;
+    --input: 261.18 72.65% 22.94%;
+    --ring: 258.31 89.53% 66.27%;
+    --chart-1: 255.14 91.74% 76.27%;
+    --chart-2: 258.31 89.53% 66.27%;
+    --chart-3: 262.12 83.26% 57.84%;
+    --chart-4: 263.39 69.96% 50.39%;
+    --chart-5: 263.36 69.3% 42.16%;
+    --sidebar: 222.22 47.37% 11.18%;
+    --sidebar-foreground: 226.45 100% 93.92%;
+    --sidebar-primary: 258.31 89.53% 66.27%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 244.52 57.94% 50.59%;
+    --sidebar-accent-foreground: 226.45 100% 93.92%;
+    --sidebar-border: 261.18 72.65% 22.94%;
+    --sidebar-ring: 258.31 89.53% 66.27%;
+    --font-sans: Roboto, sans-serif;
+    --font-serif: Playfair Display, serif;
+    --font-mono: Fira Code, monospace;
+    --radius: 0.625rem;
+    --shadow-2xs: 2px 2px 4px 0px hsl(255 86% 66% / 0.1);
+    --shadow-xs: 2px 2px 4px 0px hsl(255 86% 66% / 0.1);
+    --shadow-sm: 2px 2px 4px 0px hsl(255 86% 66% / 0.2),
+      2px 1px 2px -1px hsl(255 86% 66% / 0.2);
+    --shadow: 2px 2px 4px 0px hsl(255 86% 66% / 0.2),
+      2px 1px 2px -1px hsl(255 86% 66% / 0.2);
+    --shadow-md: 2px 2px 4px 0px hsl(255 86% 66% / 0.2),
+      2px 2px 4px -1px hsl(255 86% 66% / 0.2);
+    --shadow-lg: 2px 2px 4px 0px hsl(255 86% 66% / 0.2),
+      2px 4px 6px -1px hsl(255 86% 66% / 0.2);
+    --shadow-xl: 2px 2px 4px 0px hsl(255 86% 66% / 0.2),
+      2px 8px 10px -1px hsl(255 86% 66% / 0.2);
+    --shadow-2xl: 2px 2px 4px 0px hsl(255 86% 66% / 0.5);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

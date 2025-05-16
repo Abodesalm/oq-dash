@@ -1,0 +1,319 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+.pad {
+  padding: 2rem 10rem;
+}
+@media screen and (max-width: 1300px) {
+  .pad {
+    padding: 2rem 6rem;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .pad {
+    padding: 1.5rem 4rem;
+  }
+}
+@media screen and (max-width: 720px) {
+  .pad {
+    padding: 1.5rem 4rem;
+  }
+}
+@media screen and (max-width: 500px) {
+  .pad {
+    padding: 1rem 1rem;
+  }
+}
+
+.side-pad {
+  padding: 1.2rem 2.4rem;
+}
+@media screen and (max-width: 1300px) {
+  .side-pad {
+    padding: 1.2rem 2.2rem;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .side-pad {
+    padding: 1rem 2rem;
+  }
+}
+@media screen and (max-width: 720px) {
+  .side-pad {
+    padding: 1rem 2rem;
+  }
+}
+@media screen and (max-width: 500px) {
+  .side-pad {
+    padding: 1rem 1rem;
+  }
+}
+
+.scrollTop {
+  width: 40px;
+  height: 40px;
+  z-index: 10;
+  position: fixed;
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
+  cursor: pointer;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  bottom: -50px;
+  right: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s ease;
+  -webkit-transition: 0.5s ease;
+  -moz-transition: 0.5s ease;
+  -ms-transition: 0.5s ease;
+  -o-transition: 0.5s ease;
+  @apply bg-light dark:bg-darker hover:bg-light/50 dark:hover:bg-middark font-bold btn-ui;
+}
+
+.scrollTop.show {
+  bottom: 15px;
+}
+@media screen and (max-width: 720px) {
+  .scrollTop.show {
+    bottom: 20px;
+  }
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  border: 3px solid;
+  border-color: #fff #fff transparent transparent;
+  @apply border-t-dark dark:border-t-light border-r-dark dark:border-r-light;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+.loader::after,
+.loader::before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  border: 3px solid;
+  border-color: transparent transparent #6ee154 #6ee154;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  animation: rotationBack 0.5s linear infinite;
+  transform-origin: center center;
+}
+
+.loader::before {
+  width: 32px;
+  height: 32px;
+  border-color: #fff #fff transparent transparent;
+  @apply border-t-dark dark:border-t-light border-r-dark dark:border-r-light;
+  animation: rotation 1.5s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotationBack {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+.text-size-1 {
+  @apply text-[64px] xl:text-[58px] lg:text-[52px] md:text-[52px] sm:text-[52px];
+}
+
+.text-size-2 {
+  @apply text-[38px] xl:text-[34px] lg:text-[30px] md:text-[28px] sm:text-[28px];
+}
+
+.text-size-3 {
+  @apply text-[28px] xl:text-[] lg:text-[24px] md:text-[22px] sm:text-[22px];
+}
+
+.text-size-4 {
+  @apply text-[24px] xl:text-[] lg:text-[20px] md:text-[18px] sm:text-[18px];
+}
+
+.text-size-5 {
+  @apply text-[14px] xl:text-[] lg:text-[14px] md:text-[14px] sm:text-[12px];
+}
+
+.text-size-6 {
+  @apply text-[12px] xl:text-[] lg:text-[11px] md:text-[11px] sm:text-[10px];
+}
+
+.btn {
+  @apply px-2 py-1 rounded-[5px] transition-all;
+}
+
+.btn-normal {
+  @apply btn bg-dark dark:bg-light hover:bg-dark/80 dark:hover:bg-bglight text-white dark:text-dark;
+}
+
+.btn-prime {
+  @apply btn text-light bg-prime hover:bg-prime/80;
+}
+
+.btn-danger {
+  @apply btn text-light bg-danger hover:bg-danger/80;
+}
+
+.btn-success {
+  @apply btn text-light bg-success hover:bg-success/80;
+}
+
+.outlining {
+  @apply btn outline hover:outline-none text-dark dark:text-light;
+}
+
+.btn-outline {
+  @apply outlining hover:text-light dark:hover:text-dark hover:bg-dark dark:hover:bg-light;
+}
+
+.btn-outline-prime {
+  @apply outlining outline-prime hover:bg-prime;
+}
+
+.btn-outline-danger {
+  @apply outlining outline-danger hover:bg-danger;
+}
+
+.btn-outline-success {
+  @apply outlining outline-success hover:bg-success;
+}
+
+.btn-ui {
+  @apply btn hover:bg-light dark:hover:bg-lightdark;
+}
+
+.btn-ui-blur {
+  @apply btn text-dark/80 dark:text-bglight/80 hover:text-darker dark:hover:text-light;
+}
+
+.btn-ui-silver {
+  @apply btn bg-light dark:bg-middark hover:bg-bglight/50 dark:hover:bg-lightdark/60;
+}
+
+.btn-ui-radio {
+  @apply btn bg-bglight dark:bg-darker hover:bg-bglight/50 dark:hover:bg-lightdark/60;
+}
+
+.btn-ui-radio-active {
+  @apply bg-lightdark/30 dark:bg-lightdark;
+}
+
+.buttonRow {
+  @apply flex flex-row items-center gap-1;
+}
+
+.btn-accent {
+  @apply btn text-dark font-medium bg-accent hover:bg-accent/80 drop-shadow;
+}
+
+.btn-accent-outline {
+  @apply btn text-accent font-medium border border-accent rounded-none drop-shadow;
+}
+
+.btn-prime-outline {
+  @apply btn text-prime font-medium border border-prime rounded-none drop-shadow;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.statDiv {
+  @apply bg-light dark:bg-middark w-[200px] h-[120px] px-4 py-2 rounded-[10px] flex flex-col relative;
+}
+.statDiv p {
+  @apply text-size-2 font-bold self-center;
+}
+.statDiv i {
+  @apply absolute bottom-[8px] right-[20px] text-[30px];
+}
+
+.before-rabon::before {
+  content: "";
+  @apply absolute -left-4 top-0 w-[3px] h-full bg-success;
+}
+
+.flex-center {
+  @apply flex items-center justify-center;
+}
+
+.rate-green {
+  color: rgb(34, 197, 94);
+}
+
+.rate-cyan {
+  color: rgb(6, 182, 212);
+}
+
+.rate-yellow {
+  color: rgb(234, 179, 8);
+}
+
+.rate-orange {
+  color: rgb(249, 115, 22);
+}
+
+.rate-red {
+  color: rgb(239, 68, 68);
+}
+
+@keyframes shine {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.golden-glass {
+  display: flex !important;
+  background: linear-gradient(135deg, #fff700, #ffb800, #ffd700);
+  background-size: 200% 200%;
+  animation: shine 3s linear infinite;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  box-shadow: 0px 0px 5px rgba(255, 215, 0, 0.5);
+  @apply p-2 flex-row rounded-lg gap-4;
+}/*# sourceMappingURL=globals.css.map */
