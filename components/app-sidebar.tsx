@@ -98,15 +98,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton
-              asChild
-              className="data-[slot=sidebar-menu-button]:!p-1.5"
-            >
-              <p>
-                <ArrowUpCircleIcon className="h-5 w-5" />
-                <span className="text-base font-semibold">OQ maker</span>
-              </p>
-            </SidebarMenuButton>
+            <p className="flex flex-row gap-4 items-center">
+              <ArrowUpCircleIcon className="h-5 w-5" />
+              <span className="text-base font-semibold">OQ maker</span>
+            </p>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
