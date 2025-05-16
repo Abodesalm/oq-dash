@@ -6,6 +6,8 @@ import {
   BarChartIcon,
   CameraIcon,
   ClipboardListIcon,
+  CreditCard,
+  CreditCardIcon,
   DatabaseIcon,
   FileCodeIcon,
   FileIcon,
@@ -19,7 +21,6 @@ import {
   UsersIcon,
 } from "lucide-react";
 
-import { NavDocuments } from "@/components/nav-documents";
 import { NavMain } from "@/components/nav-main";
 import { NavSecondary } from "@/components/nav-secondary";
 import { NavUser } from "@/components/nav-user";
@@ -32,6 +33,14 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { IoCardOutline } from "react-icons/io5";
+import {
+  PiCardsFill,
+  PiFilesFill,
+  PiUsersFill,
+  PiVaultFill,
+} from "react-icons/pi";
+import { RiBankCardFill } from "react-icons/ri";
 
 const data = {
   user: {
@@ -42,52 +51,53 @@ const data = {
   navMain: [
     {
       title: "main",
-      url: "#",
+      url: "/",
       icon: LayoutDashboardIcon,
     },
     {
       title: "Users",
-      url: "#",
+      url: "/users",
       icon: UsersIcon,
     },
     {
       title: "Codes",
-      url: "#",
-      icon: BarChartIcon,
+      url: "/codes",
+      icon: CreditCardIcon,
     },
     {
       title: "Tests",
-      url: "#",
-      icon: FolderIcon,
+      url: "/tests",
+      icon: FileIcon,
+    },
+  ],
+
+  navData: [
+    {
+      title: "Users Table",
+      url: "/users-data",
+      icon: PiUsersFill,
+    },
+    {
+      title: "Codes Table",
+      url: "/codes-data",
+      icon: PiCardsFill,
+    },
+    {
+      title: "Tests Table",
+      url: "/tests-data",
+      icon: PiFilesFill,
+    },
+    {
+      title: "Banks Table",
+      url: "/banks-data",
+      icon: PiVaultFill,
     },
   ],
   navSecondary: [
     {
       title: "Settings",
-      url: "#",
+      url: "/settings",
       icon: SettingsIcon,
-    },
-  ],
-  navData: [
-    {
-      title: "Users Table",
-      url: "#",
-      icon: DatabaseIcon,
-    },
-    {
-      title: "Codes Table",
-      url: "#",
-      icon: DatabaseIcon,
-    },
-    {
-      title: "Tests Table",
-      url: "#",
-      icon: DatabaseIcon,
-    },
-    {
-      title: "Banks Table",
-      url: "#",
-      icon: DatabaseIcon,
     },
   ],
 };

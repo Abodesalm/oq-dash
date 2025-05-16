@@ -4,10 +4,10 @@ import "react-toastify/dist/ReactToastify.css";
 import ToUp from "@/components/layout/ToUp";
 import Providers from "./Providers";
 import type { Metadata } from "next";
-import { getLocale } from "next-intl/server";
 import { ToastContainer } from "react-toastify";
 import { AppSidebar } from "@/components/app-sidebar";
-import { SidebarProvider } from "@/components/ui/sidebar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { SiteHeader } from "@/components/site-header";
 
 export const metadata: Metadata = {
   title: "Q dashboard",
@@ -19,19 +19,16 @@ export default async function Layout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const lang = await getLocale();
   return (
-    <html
-      lang={lang}
-      dir={lang === "ar" ? "rtl" : "ltr"}
-      style={{ direction: lang === "ar" ? "rtl" : "ltr" }}
-      suppressHydrationWarning
-    >
+    <html lang={`en`} suppressHydrationWarning>
       <body>
         <Providers>
           <SidebarProvider>
             <AppSidebar variant="inset" />
-            {children}
+            <SidebarInset>
+              <SiteHeader />
+              {children}
+            </SidebarInset>
             <ToUp />
           </SidebarProvider>
         </Providers>

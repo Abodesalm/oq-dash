@@ -11,6 +11,8 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import Link from "next/link";
+import { IconType } from "react-icons/lib";
 
 export function NavMain({
   items,
@@ -19,7 +21,7 @@ export function NavMain({
   items: {
     title: string;
     url: string;
-    icon?: LucideIcon;
+    icon?: LucideIcon | IconType;
   }[];
   label: String;
 }) {
@@ -32,10 +34,15 @@ export function NavMain({
         <SidebarMenu>
           {items.map((item) => (
             <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton tooltip={item.title}>
-                {item.icon && <item.icon />}
-                <span>{item.title}</span>
-              </SidebarMenuButton>
+              <Link
+                href={item.url}
+                className="flex flex-row gap-3 items-center"
+              >
+                <SidebarMenuButton tooltip={item.title}>
+                  {item.icon && <item.icon className="size-4" />}
+                  <span>{item.title}</span>
+                </SidebarMenuButton>
+              </Link>
             </SidebarMenuItem>
           ))}
         </SidebarMenu>

@@ -10,6 +10,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import Link from "next/link";
 
 export function NavSecondary({
   items,
@@ -27,12 +28,15 @@ export function NavSecondary({
         <SidebarMenu>
           {items.map((item) => (
             <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton asChild>
-                <a href={item.url} className="flex flex-row gap-4 items-center">
-                  <item.icon />
-                  <span>{item.title}</span>
-                </a>
-              </SidebarMenuButton>
+              <Link
+                href={item.url}
+                className="flex flex-row gap-4 items-center"
+              >
+                <SidebarMenuButton asChild>
+                  <item.icon className="size-5" />
+                  <p>{item.title}</p>
+                </SidebarMenuButton>
+              </Link>
             </SidebarMenuItem>
           ))}
         </SidebarMenu>
