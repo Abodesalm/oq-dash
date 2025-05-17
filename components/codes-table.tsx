@@ -51,7 +51,6 @@ import {
   TrendingUpIcon,
   XIcon,
 } from "lucide-react";
-import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
 import { toast } from "sonner";
 import { z } from "zod";
 
@@ -107,7 +106,16 @@ export const schema = z.object({
   id: z.string(),
   code: z.string(),
   status: z.string(),
-  user: z.string().nullable(),
+  user: z
+    .object({
+      username: z.string().nullable(),
+      email: z.string(),
+      country: z.string().nullable(),
+      region: z.string().nullable(),
+      role: z.string(),
+      full_name: z.string().nullable(),
+    })
+    .nullable(),
   plan: z.string(),
   price: z.number(),
   duration: z.number(),
@@ -133,14 +141,14 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
     cell: ({ row }) => (
       <Badge
         variant="outline"
-        className="flex gap-1 px-1.5 text-muted-foreground [&_svg]:size-3"
+        className="flex gap-1 px-1.5 text-muted-foreground [&_svg]:size-3 w-fit"
       >
         {row.original.status === "valid" ? (
-          <CheckCircle2Icon className="text-green-500 dark:text-green-400" />
-        ) : row.original.status === "invalid" ? (
-          <XIcon />
-        ) : (
           <LoaderIcon />
+        ) : row.original.status === "invalid" ? (
+          <XIcon className="text-red-800" />
+        ) : (
+          <CheckCircle2Icon className="text-green-500 dark:text-green-400" />
         )}
         {row.original.status}
       </Badge>
@@ -150,7 +158,7 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
     accessorKey: "plan",
     header: "plan",
     cell: ({ row }) => (
-      <div className="w-32">
+      <div className="w-fit">
         <Badge variant="outline" className="px-1.5 text-muted-foreground">
           {row.original.plan}
         </Badge>
@@ -161,12 +169,14 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
   {
     accessorKey: "user",
     header: "User",
-    cell: ({ row }) => <>{row.original.user ? row.original.user : "--"}</>,
+    cell: ({ row }) => (
+      <>{row.original.user ? row.original.user.username : "--"}</>
+    ),
   },
   {
     accessorKey: "price",
     header: "Price",
-    cell: ({ row }) => <>{row.original.price}</>,
+    cell: ({ row }) => <>{row.original.price}$</>,
   },
   {
     accessorKey: "tests",
@@ -222,7 +232,6 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-32">
-          <DropdownMenuItem>Show</DropdownMenuItem>
           <DropdownMenuItem>Edit</DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem>Delete</DropdownMenuItem>
@@ -328,52 +337,17 @@ export function CodesTable({
       className="flex w-full flex-col justify-start gap-6"
     >
       <div className="flex items-center justify-between px-4 lg:px-6">
-        <Label htmlFor="view-selector" className="sr-only">
-          View
-        </Label>
-        <Select defaultValue="outline">
-          <SelectTrigger
-            className="@4xl/main:hidden flex w-fit"
-            id="view-selector"
-          >
-            <SelectValue placeholder="Select a view" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="outline">Outline</SelectItem>
-            <SelectItem value="past-performance">Past Performance</SelectItem>
-            <SelectItem value="key-personnel">Key Personnel</SelectItem>
-            <SelectItem value="focus-documents">Focus Documents</SelectItem>
-          </SelectContent>
-        </Select>
-        <TabsList className="@4xl/main:flex hidden">
-          <TabsTrigger value="outline">Outline</TabsTrigger>
-          <TabsTrigger value="past-performance" className="gap-1">
-            Past Performance{" "}
-            <Badge
-              variant="secondary"
-              className="flex h-5 w-5 items-center justify-center rounded-full bg-muted-foreground/30"
-            >
-              3
-            </Badge>
-          </TabsTrigger>
-          <TabsTrigger value="key-personnel" className="gap-1">
-            Key Personnel{" "}
-            <Badge
-              variant="secondary"
-              className="flex h-5 w-5 items-center justify-center rounded-full bg-muted-foreground/30"
-            >
-              2
-            </Badge>
-          </TabsTrigger>
-          <TabsTrigger value="focus-documents">Focus Documents</TabsTrigger>
-        </TabsList>
+        <Input
+          type="search"
+          className="w-[300px] md:w-[200px]"
+          placeholder="Search..."
+        />
         <div className="flex items-center gap-2">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" size="sm">
                 <ColumnsIcon />
-                <span className="hidden lg:inline">Customize Columns</span>
-                <span className="lg:hidden">Columns</span>
+                <span className="inline md:hidden">Customize Columns</span>{" "}
                 <ChevronDownIcon />
               </Button>
             </DropdownMenuTrigger>
@@ -403,7 +377,7 @@ export function CodesTable({
           </DropdownMenu>
           <Button variant="outline" size="sm">
             <PlusIcon />
-            <span className="hidden lg:inline">Add Section</span>
+            <span className="inline md:hidden">Add Section</span>
           </Button>
         </div>
       </div>
@@ -463,13 +437,12 @@ export function CodesTable({
           </DndContext>
         </div>
         <div className="flex items-center justify-between px-4">
-          <div className="hidden flex-1 text-sm text-muted-foreground lg:flex">
-            {table.getFilteredSelectedRowModel().rows.length} of{" "}
-            {table.getFilteredRowModel().rows.length} row(s) selected.
-          </div>
           <div className="flex w-full items-center gap-8 lg:w-fit">
             <div className="hidden items-center gap-2 lg:flex">
-              <Label htmlFor="rows-per-page" className="text-sm font-medium">
+              <Label
+                htmlFor="rows-per-page"
+                className="text-sm font-medium md:hidden"
+              >
                 Rows per page
               </Label>
               <Select
@@ -493,7 +466,7 @@ export function CodesTable({
               </Select>
             </div>
             <div className="flex w-fit items-center justify-center text-sm font-medium">
-              Page {table.getState().pagination.pageIndex + 1} of{" "}
+              {table.getState().pagination.pageIndex + 1} of{" "}
               {table.getPageCount()}
             </div>
             <div className="ml-auto flex items-center gap-2 lg:ml-0">
@@ -559,29 +532,8 @@ export function CodesTable({
   );
 }
 
-const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
-];
-
-const chartConfig = {
-  desktop: {
-    label: "Desktop",
-    color: "var(--primary)",
-  },
-  mobile: {
-    label: "Mobile",
-    color: "var(--primary)",
-  },
-} satisfies ChartConfig;
-
 function TableCellViewer({ item }: { item: z.infer<typeof schema> }) {
-  const isMobile = useIsMobile();
-
+  const invalid = item.status === "invalid";
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -592,104 +544,68 @@ function TableCellViewer({ item }: { item: z.infer<typeof schema> }) {
       <SheetContent side="right" className="flex flex-col">
         <SheetHeader className="gap-1">
           <SheetTitle>{item.code}</SheetTitle>
-          <SheetDescription>
-            Showing total visitors for the last 6 months
-          </SheetDescription>
-        </SheetHeader>
-        <div className="flex flex-1 flex-col gap-4 overflow-y-auto py-4 text-sm">
-          {!isMobile && (
-            <>
-              <ChartContainer config={chartConfig}>
-                <AreaChart
-                  accessibilityLayer
-                  data={chartData}
-                  margin={{
-                    left: 0,
-                    right: 10,
-                  }}
-                >
-                  <CartesianGrid vertical={false} />
-                  <XAxis
-                    dataKey="month"
-                    tickLine={false}
-                    axisLine={false}
-                    tickMargin={8}
-                    tickFormatter={(value) => value.slice(0, 3)}
-                    hide
-                  />
-                  <ChartTooltip
-                    cursor={false}
-                    content={<ChartTooltipContent indicator="dot" />}
-                  />
-                  <Area
-                    dataKey="mobile"
-                    type="natural"
-                    fill="var(--color-mobile)"
-                    fillOpacity={0.6}
-                    stroke="var(--color-mobile)"
-                    stackId="a"
-                  />
-                  <Area
-                    dataKey="desktop"
-                    type="natural"
-                    fill="var(--color-desktop)"
-                    fillOpacity={0.4}
-                    stroke="var(--color-desktop)"
-                    stackId="a"
-                  />
-                </AreaChart>
-              </ChartContainer>
-              <Separator />
-              <div className="grid gap-2">
-                <div className="flex gap-2 font-medium leading-none">
-                  Trending up by 5.2% this month{" "}
-                  <TrendingUpIcon className="size-4" />
-                </div>
-                <div className="text-muted-foreground">
-                  Showing total visitors for the last 6 months. This is just
-                  some random text to test the layout. It spans multiple lines
-                  and should wrap around.
-                </div>
-              </div>
-              <Separator />
-            </>
+          {invalid ? (
+            <SheetDescription className="text-danger">
+              This code is invalid!
+            </SheetDescription>
+          ) : (
+            <SheetDescription>Edit this code&apos;s details</SheetDescription>
           )}
-          <div className="flex flex-col gap-4">
-            <div className="flex flex-col gap-3">
-              <Label htmlFor="header">Code</Label>
-              <p id="header">{item.code}</p>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
+        </SheetHeader>
+        <form>
+          <div className="flex flex-1 flex-col gap-4 overflow-y-auto py-4 text-sm">
+            <div className="flex flex-col gap-4">
               <div className="flex flex-col gap-3">
-                <Label htmlFor="status">Status</Label>
-                <p id="status">{item.status}</p>
+                <Label htmlFor="header">Code</Label>
+                <Input
+                  type={`text`}
+                  id="header"
+                  defaultValue={item.code}
+                  disabled={invalid}
+                />
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="flex flex-col gap-3">
+                  <Label htmlFor="status">Status</Label>
+                  <p id="status">{item.status}</p>
+                </div>
+                <div className="flex flex-col gap-3">
+                  <Label htmlFor="plan">Plan</Label>
+                  <p id="plan">{item.plan}</p>
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="flex flex-col gap-3">
+                  <Label htmlFor="target">Price</Label>
+                  <Input
+                    id="target"
+                    defaultValue={item.price}
+                    disabled={invalid}
+                  />
+                </div>
+                <div className="flex flex-col gap-3">
+                  <Label htmlFor="tests">Tests</Label>
+                  <Input
+                    id="tests"
+                    defaultValue={item.tests}
+                    disabled={invalid}
+                  />
+                </div>
               </div>
               <div className="flex flex-col gap-3">
-                <Label htmlFor="plan">Plan</Label>
-                <p id="plan">{item.plan}</p>
+                <Label htmlFor="bank">Bank</Label>
+                <Input id="bank" defaultValue={item.bank} disabled={invalid} />
               </div>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="flex flex-col gap-3">
-                <Label htmlFor="target">Price</Label>
-                <Input id="target" defaultValue={item.price} />
-              </div>
-              <div className="flex flex-col gap-3">
-                <Label htmlFor="limit">Tests</Label>
-                <Input id="limit" defaultValue={item.tests} />
-              </div>
-            </div>
-            <div className="flex flex-col gap-3">
-              <Label htmlFor="bank">Bank</Label>
-              <p id="bank">{item.bank}</p>
             </div>
           </div>
-        </div>
+        </form>
         <SheetFooter className="mt-auto flex gap-2 sm:flex-col sm:space-x-0">
-          <Button className="w-full">Submit</Button>
+          <Button className="w-full" disabled={invalid}>
+            Submit
+          </Button>
           <SheetClose asChild>
             <Button variant="outline" className="w-full">
-              Done
+              Cancel
             </Button>
           </SheetClose>
         </SheetFooter>
@@ -697,3 +613,80 @@ function TableCellViewer({ item }: { item: z.infer<typeof schema> }) {
     </Sheet>
   );
 }
+/* function CellCreator() {
+  const isMobile = useIsMobile()
+  return (
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button variant="ghost" className="w-fit px-0 text-left text-foreground">
+          {isMobile?<PlusIcon />:<PlusIcon /> Add Code}
+        </Button>
+      </SheetTrigger>
+      <SheetContent side="right" className="flex flex-col">
+        <SheetHeader className="gap-1">
+          <SheetTitle>Add New Code</SheetTitle>
+
+            <SheetDescription>Edit this code&apos;s details</SheetDescription>
+
+        </SheetHeader>
+        <form>
+          <div className="flex flex-1 flex-col gap-4 overflow-y-auto py-4 text-sm">
+            <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-3">
+                <Label htmlFor="header">Code</Label>
+                <Input
+                  type={`text`}
+                  id="header"
+                  defaultValue={item.code}
+                  disabled={invalid}
+                />
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="flex flex-col gap-3">
+                  <Label htmlFor="status">Status</Label>
+                  <p id="status">{item.status}</p>
+                </div>
+                <div className="flex flex-col gap-3">
+                  <Label htmlFor="plan">Plan</Label>
+                  <p id="plan">{item.plan}</p>
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="flex flex-col gap-3">
+                  <Label htmlFor="target">Price</Label>
+                  <Input
+                    id="target"
+                    defaultValue={item.price}
+                    disabled={invalid}
+                  />
+                </div>
+                <div className="flex flex-col gap-3">
+                  <Label htmlFor="tests">Tests</Label>
+                  <Input
+                    id="tests"
+                    defaultValue={item.tests}
+                    disabled={invalid}
+                  />
+                </div>
+              </div>
+              <div className="flex flex-col gap-3">
+                <Label htmlFor="bank">Bank</Label>
+                <Input id="bank" defaultValue={item.bank} disabled={invalid} />
+              </div>
+            </div>
+          </div>
+        </form>
+        <SheetFooter className="mt-auto flex gap-2 sm:flex-col sm:space-x-0">
+          <Button className="w-full" disabled={invalid}>
+            Submit
+          </Button>
+          <SheetClose asChild>
+            <Button variant="outline" className="w-full">
+              Cancel
+            </Button>
+          </SheetClose>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
+  );
+}*/
