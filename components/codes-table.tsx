@@ -375,10 +375,7 @@ export function CodesTable({
                 })}
             </DropdownMenuContent>
           </DropdownMenu>
-          <Button variant="outline" size="sm">
-            <PlusIcon />
-            <span className="inline md:hidden">Add Section</span>
-          </Button>
+          <CellCreator />
         </div>
       </div>
       <TabsContent
@@ -438,7 +435,7 @@ export function CodesTable({
         </div>
         <div className="flex items-center justify-between px-4">
           <div className="flex w-full items-center gap-8 lg:w-fit">
-            <div className="hidden items-center gap-2 lg:flex">
+            <div className="flex md:hidden items-center gap-2">
               <Label
                 htmlFor="rows-per-page"
                 className="text-sm font-medium md:hidden"
@@ -466,7 +463,7 @@ export function CodesTable({
               </Select>
             </div>
             <div className="flex w-fit items-center justify-center text-sm font-medium">
-              {table.getState().pagination.pageIndex + 1} of{" "}
+              page {table.getState().pagination.pageIndex + 1} of{" "}
               {table.getPageCount()}
             </div>
             <div className="ml-auto flex items-center gap-2 lg:ml-0">
@@ -613,73 +610,54 @@ function TableCellViewer({ item }: { item: z.infer<typeof schema> }) {
     </Sheet>
   );
 }
-/* function CellCreator() {
-  const isMobile = useIsMobile()
+
+function CellCreator() {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="ghost" className="w-fit px-0 text-left text-foreground">
-          {isMobile?<PlusIcon />:<PlusIcon /> Add Code}
+        <Button variant="outline" size="sm">
+          <PlusIcon />
+          <span className="inline md:hidden">Add Code</span>
         </Button>
       </SheetTrigger>
       <SheetContent side="right" className="flex flex-col">
         <SheetHeader className="gap-1">
           <SheetTitle>Add New Code</SheetTitle>
 
-            <SheetDescription>Edit this code&apos;s details</SheetDescription>
-
+          <SheetDescription>create new code</SheetDescription>
         </SheetHeader>
         <form>
           <div className="flex flex-1 flex-col gap-4 overflow-y-auto py-4 text-sm">
             <div className="flex flex-col gap-4">
               <div className="flex flex-col gap-3">
                 <Label htmlFor="header">Code</Label>
-                <Input
-                  type={`text`}
-                  id="header"
-                  defaultValue={item.code}
-                  disabled={invalid}
-                />
+                <Input type={`text`} id="header" />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div className="flex flex-col gap-3">
-                  <Label htmlFor="status">Status</Label>
-                  <p id="status">{item.status}</p>
-                </div>
-                <div className="flex flex-col gap-3">
                   <Label htmlFor="plan">Plan</Label>
-                  <p id="plan">{item.plan}</p>
+                  <p id="plan">plan</p>
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div className="flex flex-col gap-3">
                   <Label htmlFor="target">Price</Label>
-                  <Input
-                    id="target"
-                    defaultValue={item.price}
-                    disabled={invalid}
-                  />
+                  <Input id="target" />
                 </div>
                 <div className="flex flex-col gap-3">
                   <Label htmlFor="tests">Tests</Label>
-                  <Input
-                    id="tests"
-                    defaultValue={item.tests}
-                    disabled={invalid}
-                  />
+                  <Input id="tests" />
                 </div>
               </div>
               <div className="flex flex-col gap-3">
                 <Label htmlFor="bank">Bank</Label>
-                <Input id="bank" defaultValue={item.bank} disabled={invalid} />
+                <Input id="bank" />
               </div>
             </div>
           </div>
         </form>
         <SheetFooter className="mt-auto flex gap-2 sm:flex-col sm:space-x-0">
-          <Button className="w-full" disabled={invalid}>
-            Submit
-          </Button>
+          <Button className="w-full">Submit</Button>
           <SheetClose asChild>
             <Button variant="outline" className="w-full">
               Cancel
@@ -689,4 +667,4 @@ function TableCellViewer({ item }: { item: z.infer<typeof schema> }) {
       </SheetContent>
     </Sheet>
   );
-}*/
+}
